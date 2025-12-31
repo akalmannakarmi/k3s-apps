@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: it-club-website-ingress
+  namespace: it-club-website
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - itclub.akal.com.np
+      secretName: itclub-tls
+  rules:
+    - host: itclub.akal.com.np
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: it-club-website-service
+                port:
+                  number: 80

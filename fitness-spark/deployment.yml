@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-spark
+  namespace: fitness-spark
+  labels:
+    app: fitness-spark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fitness-spark
+  template:
+    metadata:
+      labels:
+        app: fitness-spark
+    spec:
+      nodeSelector:
+        worker: aws
+      containers:
+        - name: fitness-spark
+          image: akalmannakarmi/fitness-spark:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: fitness-spark-secret

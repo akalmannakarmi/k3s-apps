@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: it-club-website-service
+  namespace: it-club-website
+spec:
+  selector:
+    app: it-club-website
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
