@@ -2,9 +2,9 @@
 set -euo pipefail
 
 needs_cert_manager_for_apps() {
-  local -n apps=$1
+  local -n app_list=$1
 
-  for app in "${apps[@]}"; do
+  for app in "${app_list[@]}"; do
     if grep -R "cert-manager.io/cluster-issuer" "$ROOT_DIR/$app" >/dev/null 2>&1; then
       return 0
     fi
@@ -14,12 +14,12 @@ needs_cert_manager_for_apps() {
 }
 
 ensure_cert_manager_for_apps() {
-  local -n apps=$1
+  local -n app_list=$1
 
-  if needs_cert_manager_for_apps apps; then
+  if needs_cert_manager_for_apps app_list; then
     log "TLS detected in selected apps → ensuring cert-manager"
     "$ROOT_DIR/cert-manager/install.sh"
-    kubectl apply -f "$ROOT_DIR/cert-manager/cluster-issuer.yaml"
+    kubectl apply -f "$ROOT_DIR/cert-manager/cluster-issuer.yml"
   else
     echo "No TLS usage in selected apps"
   fi

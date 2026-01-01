@@ -3,12 +3,14 @@ kind: Ingress
 metadata:
   name: it-club-website-ingress
   namespace: it-club-website
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: traefik
   tls:
     - hosts:
         - itclub.akal.com.np
-      secretName: itclub-tls
+      secretName: it-club-website-tls
   rules:
     - host: itclub.akal.com.np
       http:
