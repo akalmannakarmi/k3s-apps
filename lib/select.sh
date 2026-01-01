@@ -12,7 +12,7 @@ select_apps() {
   done
 
   echo
-  read -p "Enter numbers to EXCLUDE (comma-separated), or press Enter to deploy all: " input
+  read -p "Enter numbers to EXCLUDE (comma-separated), or press Enter to deploy all: " input </dev/tty
 
   if [ -z "$input" ]; then
     selected_apps=("${all_apps[@]}")
