@@ -1,6 +1,6 @@
 resources:
-  - namespace.yaml
+  - namespace.yml
   - pvc.yml
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml
+  - deployment.ysml
+  - service.yml
+  - ingress.yml

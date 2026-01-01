@@ -5,9 +5,9 @@ discover_apps() {
   find "$ROOT_DIR" \
     -mindepth 1 -maxdepth 1 \
     -type d \
-    -exec test -f "{}/kustomization.yaml" \; \
-    -print |
-    xargs -n1 basename |
+    -name .git -prune -o \
+    -type d -exec test -f "{}/kustomization.yml" \; \
+    -printf '%f\n' |
     sort
 }
 
