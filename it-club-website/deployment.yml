@@ -24,7 +24,7 @@ spec:
             - containerPort: 8000
           envFrom:
             - secretRef:
-                name: it-club-secret
+                name: it-club-website-secret
           volumeMounts:
             - name: sqlite-storage
               mountPath: /app/db

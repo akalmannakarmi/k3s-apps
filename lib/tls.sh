@@ -2,9 +2,9 @@
 set -euo pipefail
 
 needs_cert_manager_for_apps() {
-  local -n app_list=$1
+  local -n app_list1=$1
 
-  for app in "${app_list[@]}"; do
+  for app in "${app_list1[@]}"; do
     if grep -R "cert-manager.io/cluster-issuer" "$ROOT_DIR/$app" >/dev/null 2>&1; then
       return 0
     fi
