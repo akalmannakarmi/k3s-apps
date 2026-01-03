@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - cloud.example.com
+        - nextcloud.akal.com.np
       secretName: nextcloud-tls
   rules:
-    - host: cloud.example.com
+    - host: nextcloud.akal.com.np
       http:
         paths:
           - path: /
