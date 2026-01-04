@@ -1,6 +1,10 @@
 resources:
   - namespace.yml
   - pvc.yml
-  - deployment.yml
-  - service.yml
+  - redis-deployment.yml
+  - redis-service.yml
+  - web-deployment.yml
+  - web-service.yml
+  - celery-beat-deployment.yml
+  - celery-worker-deployment.yml
   - ingress.yml

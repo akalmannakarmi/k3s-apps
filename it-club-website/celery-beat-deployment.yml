@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-beat
+  namespace: it-club-website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery-beat
+  template:
+    metadata:
+      labels:
+        app: celery-beat
+    spec:
+      containers:
+        - name: celery-beat
+          image: akalmannakarmi/it-club-website:latest
+          command: ["celery", "-A", "config", "beat", "-l", "info"]
+          envFrom:
+            - secretRef:
+                name: it-club-website-secret
