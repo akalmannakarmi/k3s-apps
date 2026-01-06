@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kanban-api-ingress
+  namespace: kanban-api
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - kanban-api.akal.com.np
+      secretName: kanban-api-tls
+  rules:
+    - host: kanban-api.akal.com.np
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kanban-api-service
+                port:
+                  number: 80

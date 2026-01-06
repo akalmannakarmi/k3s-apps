@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kanban-api
+  namespace: kanban-api
+  labels:
+    app: kanban-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kanban-api
+  template:
+    metadata:
+      labels:
+        app: kanban-api
+    spec:
+      nodeSelector:
+        worker: aws
+      containers:
+        - name: kanban-api
+          image: akalmannakarmi/kanban-api:latest
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: kanban-api-secret
