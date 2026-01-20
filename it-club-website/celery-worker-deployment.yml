@@ -13,6 +13,8 @@ spec:
       labels:
         app: celery-worker
     spec:
+      nodeSelector:
+        worker: aws
       containers:
         - name: celery-worker
           image: akalmannakarmi/it-club-website:latest
